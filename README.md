@@ -7,6 +7,7 @@ https://github.com/huggingface/neuralcoref library to resolve words in summaries
 the neuralcoref library can be tweaked in the SingleModel class.
 
 Paper: https://arxiv.org/abs/1906.04165
+Vietnamese models for spaCy Tokenizer: https://github.com/trungtv/vi_spacy
 
 ## Install
 
@@ -16,6 +17,9 @@ With that in mind, the setup.py should install 2.1.3 by default.
 ```bash
 pip install spacy==2.1.3
 pip install transformers
+pip install transformers
+pip install https://github.com/kurodenjiro/vi_spacy/raw/master/packages/vi_spacy_model-0.2.1/dist/vi_spacy_model-0.2.1.tar.gz
+pip install pyvi 
 ```
 
 ## How to Use
@@ -37,28 +41,13 @@ model(body2)
 from summarizer import Summarizer
 
 body = '''
-The Chrysler Building, the famous art deco New York skyscraper, will be sold for a small fraction of its previous sales price.
-The deal, first reported by The Real Deal, was for $150 million, according to a source familiar with the deal.
-Mubadala, an Abu Dhabi investment fund, purchased 90% of the building for $800 million in 2008.
-Real estate firm Tishman Speyer had owned the other 10%.
-The buyer is RFR Holding, a New York real estate company.
-Officials with Tishman and RFR did not immediately respond to a request for comments.
-It's unclear when the deal will close.
-The building sold fairly quickly after being publicly placed on the market only two months ago.
-The sale was handled by CBRE Group.
-The incentive to sell the building at such a huge loss was due to the soaring rent the owners pay to Cooper Union, a New York college, for the land under the building.
-The rent is rising from $7.75 million last year to $32.5 million this year to $41 million in 2028.
-Meantime, rents in the building itself are not rising nearly that fast.
-While the building is an iconic landmark in the New York skyline, it is competing against newer office towers with large floor-to-ceiling windows and all the modern amenities.
-Still the building is among the best known in the city, even to people who have never been to New York.
-It is famous for its triangle-shaped, vaulted windows worked into the stylized crown, along with its distinctive eagle gargoyles near the top.
-It has been featured prominently in many films, including Men in Black 3, Spider-Man, Armageddon, Two Weeks Notice and Independence Day.
-The previous sale took place just before the 2008 financial meltdown led to a plunge in real estate prices.
-Still there have been a number of high profile skyscrapers purchased for top dollar in recent years, including the Waldorf Astoria hotel, which Chinese firm Anbang Insurance purchased in 2016 for nearly $2 billion, and the Willis Tower in Chicago, which was formerly known as Sears Tower, once the world's tallest.
-Blackstone Group (BX) bought it for $1.3 billion 2015.
-The Chrysler Building was the headquarters of the American automaker until 1953, but it was named for and owned by Chrysler chief Walter Chrysler, not the company itself.
-Walter Chrysler had set out to build the tallest building in the world, a competition at that time with another Manhattan skyscraper under construction at 40 Wall Street at the south end of Manhattan. He kept secret the plans for the spire that would grace the top of the building, building it inside the structure and out of view of the public until 40 Wall Street was complete.
-Once the competitor could rise no higher, the spire of the Chrysler building was raised into view, giving it the title.
+Mèo, chính xác hơn là mèo nhà để phân biệt với các loài trong họ Mèo khác, là động vật có vú nhỏ và ăn thịt, sống chung với loài người, được nuôi để săn vật gây hại hoặc làm thú nuôi. Người ta tin rằng tổ tiên trung gian gần nhất trước khi được thuần hóa của chúng là mèo rừng châu Phi (Felis silvestris lybica). Mèo nhà đã sống gần gũi với loài người ít nhất 9.500 năm, và hiện nay chúng là con vật cưng phổ biến nhất trên thế giới.
+Có rất nhiều các giống mèo khác nhau, một số không có lông hoặc không có đuôi, và chúng tồn tại với rất nhiều màu lông. Mèo là những con vật có kỹ năng của thú săn mồi và được biết đến với khả năng săn bắt hàng nghìn loại sinh vật để làm thức ăn. Chúng đồng thời là những sinh vật thông minh, và có thể được dạy hay tự học cách sử dụng các công cụ đơn giản như mở tay nắm cửa hay giật nước trong nhà vệ sinh.
+Mèo giao tiếp bằng cách kêu meo, gừ-gừ, rít, gầm gừ và ngôn ngữ cơ thể. Mèo trong các bầy đàn sử dụng cả âm thanh lẫn ngôn ngữ cơ thể để giao tiếp với nhau.
+Giống như một số động vật đã thuần hóa khác (như ngựa), mèo vẫn có thể sống tốt trong môi trường hoang dã như mèo hoang. Trái với quan niệm thông thường của mọi người rằng mèo là loài động vật cô độc, chúng thường tạo nên các đàn nhỏ trong môi trường hoang dã.
+Sự kết hợp giữa con người và loài mèo dẫn tới việc nó thường được khắc họa trong các truyền thuyết và thần thoại tại nhiều nền văn hoá, gồm truyền thuyết và thần thoại Ai Cập cổ, Trung Quốc cổ, Na Uy cổ, và vị Vua xứ Wales thời Trung Cổ, Hywel Dda (người Tử tế) đã thông qua bộ luật bảo vệ động vật đầu tiên trên thế giới bằng cách đặt ra ngoài vòng pháp luật hành động giết hại hay làm tổn hại tới mèo, với những hình phạt nặng nề cho những kẻ vi phạm. Tuy nhiên, mèo thỉnh thoảng bị coi là ma quỷ, ví dụ như nó không mang lại may mắn hay thường đi liền với những mụ phù thuỷ trong nhiều nền văn hoá Trung cổ.
+Cho đến gần đây, mèo được cho rằng đã được thuần hóa trong thời kỳ Ai Cập cổ đại, nơi chúng được thờ cúng.[6] Một nghiên cứu năm 2007 chỉ ra rằng tất cả mèo nhà có thể xuất phát từ Mèo hoang châu Phi tự thuần hóa (Felis silvestris lybica) vào khoảng 8000 TCN, tại Cận Đông.[3] Bằng chứng gần đây chỉ ra sự thuần hóa mèo là thi thể một con mèo con được chôn với chủ của nó cách đây 9.500 năm tại Síp.
+Mèo là một trong mười hai con giáp tại Việt Nam, thường gọi là "Mão" hay "Mẹo".
 '''
 
 model = Summarizer()
@@ -66,10 +55,7 @@ result = model(body, min_length=60)
 full = ''.join(result)
 print(full)
 """
-The Chrysler Building, the famous art deco New York skyscraper, will be sold for a small fraction of its previous sales price. 
-The building sold fairly quickly after being publicly placed on the market only two months ago.
-The incentive to sell the building at such a huge loss was due to the soaring rent the owners pay to Cooper Union, a New York college, for the land under the building.Still the building is among the best known in the city, even to people who have never been to New York.'
-Still the building is among the best known in the city, even to people who have never been to New York.
+Mèo , chính_xác hơn là mèo nhà để phân_biệt với các loài trong họ Mèo khác , là động_vật có vú nhỏ và ăn thịt , sống chung với loài_người , được nuôi để săn vật gây hại hoặc làm thú nuôi . Trái với quan_niệm thông_thường của mọi người rằng mèo là loài động_vật cô_độc , chúng thường tạo nên các đàn nhỏ trong môi_trường hoang_dã .
 """
 ```
 
@@ -133,33 +119,18 @@ POST http://localhost:5000/summarize?ratio=0.1
 Content-type: text/plain
 
 Body:
-The Chrysler Building, the famous art deco New York skyscraper, will be sold for a small fraction of its previous sales price.
-The deal, first reported by The Real Deal, was for $150 million, according to a source familiar with the deal.
-Mubadala, an Abu Dhabi investment fund, purchased 90% of the building for $800 million in 2008.
-Real estate firm Tishman Speyer had owned the other 10%.
-The buyer is RFR Holding, a New York real estate company.
-Officials with Tishman and RFR did not immediately respond to a request for comments.
-It's unclear when the deal will close.
-The building sold fairly quickly after being publicly placed on the market only two months ago.
-The sale was handled by CBRE Group.
-The incentive to sell the building at such a huge loss was due to the soaring rent the owners pay to Cooper Union, a New York college, for the land under the building.
-The rent is rising from $7.75 million last year to $32.5 million this year to $41 million in 2028.
-Meantime, rents in the building itself are not rising nearly that fast.
-While the building is an iconic landmark in the New York skyline, it is competing against newer office towers with large floor-to-ceiling windows and all the modern amenities.
-Still the building is among the best known in the city, even to people who have never been to New York.
-It is famous for its triangle-shaped, vaulted windows worked into the stylized crown, along with its distinctive eagle gargoyles near the top.
-It has been featured prominently in many films, including Men in Black 3, Spider-Man, Armageddon, Two Weeks Notice and Independence Day.
-The previous sale took place just before the 2008 financial meltdown led to a plunge in real estate prices.
-Still there have been a number of high profile skyscrapers purchased for top dollar in recent years, including the Waldorf Astoria hotel, which Chinese firm Anbang Insurance purchased in 2016 for nearly $2 billion, and the Willis Tower in Chicago, which was formerly known as Sears Tower, once the world's tallest.
-Blackstone Group (BX) bought it for $1.3 billion 2015.
-The Chrysler Building was the headquarters of the American automaker until 1953, but it was named for and owned by Chrysler chief Walter Chrysler, not the company itself.
-Walter Chrysler had set out to build the tallest building in the world, a competition at that time with another Manhattan skyscraper under construction at 40 Wall Street at the south end of Manhattan. He kept secret the plans for the spire that would grace the top of the building, building it inside the structure and out of view of the public until 40 Wall Street was complete.
-Once the competitor could rise no higher, the spire of the Chrysler building was raised into view, giving it the title.
+Mèo, chính xác hơn là mèo nhà để phân biệt với các loài trong họ Mèo khác, là động vật có vú nhỏ và ăn thịt, sống chung với loài người, được nuôi để săn vật gây hại hoặc làm thú nuôi. Người ta tin rằng tổ tiên trung gian gần nhất trước khi được thuần hóa của chúng là mèo rừng châu Phi (Felis silvestris lybica). Mèo nhà đã sống gần gũi với loài người ít nhất 9.500 năm, và hiện nay chúng là con vật cưng phổ biến nhất trên thế giới.
+Có rất nhiều các giống mèo khác nhau, một số không có lông hoặc không có đuôi, và chúng tồn tại với rất nhiều màu lông. Mèo là những con vật có kỹ năng của thú săn mồi và được biết đến với khả năng săn bắt hàng nghìn loại sinh vật để làm thức ăn. Chúng đồng thời là những sinh vật thông minh, và có thể được dạy hay tự học cách sử dụng các công cụ đơn giản như mở tay nắm cửa hay giật nước trong nhà vệ sinh.
+Mèo giao tiếp bằng cách kêu meo, gừ-gừ, rít, gầm gừ và ngôn ngữ cơ thể. Mèo trong các bầy đàn sử dụng cả âm thanh lẫn ngôn ngữ cơ thể để giao tiếp với nhau.
+Giống như một số động vật đã thuần hóa khác (như ngựa), mèo vẫn có thể sống tốt trong môi trường hoang dã như mèo hoang. Trái với quan niệm thông thường của mọi người rằng mèo là loài động vật cô độc, chúng thường tạo nên các đàn nhỏ trong môi trường hoang dã.
+Sự kết hợp giữa con người và loài mèo dẫn tới việc nó thường được khắc họa trong các truyền thuyết và thần thoại tại nhiều nền văn hoá, gồm truyền thuyết và thần thoại Ai Cập cổ, Trung Quốc cổ, Na Uy cổ, và vị Vua xứ Wales thời Trung Cổ, Hywel Dda (người Tử tế) đã thông qua bộ luật bảo vệ động vật đầu tiên trên thế giới bằng cách đặt ra ngoài vòng pháp luật hành động giết hại hay làm tổn hại tới mèo, với những hình phạt nặng nề cho những kẻ vi phạm. Tuy nhiên, mèo thỉnh thoảng bị coi là ma quỷ, ví dụ như nó không mang lại may mắn hay thường đi liền với những mụ phù thuỷ trong nhiều nền văn hoá Trung cổ.
+Cho đến gần đây, mèo được cho rằng đã được thuần hóa trong thời kỳ Ai Cập cổ đại, nơi chúng được thờ cúng.[6] Một nghiên cứu năm 2007 chỉ ra rằng tất cả mèo nhà có thể xuất phát từ Mèo hoang châu Phi tự thuần hóa (Felis silvestris lybica) vào khoảng 8000 TCN, tại Cận Đông.[3] Bằng chứng gần đây chỉ ra sự thuần hóa mèo là thi thể một con mèo con được chôn với chủ của nó cách đây 9.500 năm tại Síp.
+Mèo là một trong mười hai con giáp tại Việt Nam, thường gọi là "Mão" hay "Mẹo".
 
 Response:
 
 {
-    "summary": "The Chrysler Building, the famous art deco New York skyscraper, will be sold for a small fraction of its previous sales price. The buyer is RFR Holding, a New York real estate company. The incentive to sell the building at such a huge loss was due to the soaring rent the owners pay to Cooper Union, a New York college, for the land under the building."
+    "summary": "Mèo , chính_xác hơn là mèo nhà để phân_biệt với các loài trong họ Mèo khác , là động_vật có vú nhỏ và ăn thịt , sống chung với loài_người , được nuôi để săn vật gây hại hoặc làm thú nuôi . Trái với quan_niệm thông_thường của mọi người rằng mèo là loài động_vật cô_độc , chúng thường tạo nên các đàn nhỏ trong môi_trường hoang_dã ."
 }
 ```
 
