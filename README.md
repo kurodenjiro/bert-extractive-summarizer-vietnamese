@@ -1,4 +1,4 @@
-# Bert Extractive Summarizer
+# Bert Extractive Summarizer For Vietnamese
 
 This repo is the generalization of the lecture-summarizer repo. This tool utilizes the HuggingFace Pytorch transformers library
 to run extractive summarizations. This works by first embedding the sentences, then running a clustering algorithm, finding 
@@ -7,7 +7,7 @@ https://github.com/huggingface/neuralcoref library to resolve words in summaries
 the neuralcoref library can be tweaked in the SingleModel class.
 
 Paper: https://arxiv.org/abs/1906.04165
-Vietnamese models for spaCy Tokenizer: https://github.com/trungtv/vi_spacy
+Vietnamese models for spaCy : https://github.com/trungtv/vi_spacy
 
 ## Install
 
@@ -16,7 +16,6 @@ Vietnamese models for spaCy Tokenizer: https://github.com/trungtv/vi_spacy
 With that in mind, the setup.py should install 2.1.3 by default.
 ```bash
 pip install spacy==2.1.3
-pip install transformers
 pip install transformers
 pip install https://github.com/kurodenjiro/vi_spacy/raw/master/packages/vi_spacy_model-0.2.1/dist/vi_spacy_model-0.2.1.tar.gz
 pip install pyvi 
