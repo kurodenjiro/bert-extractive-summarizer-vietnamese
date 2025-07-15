@@ -1,6 +1,6 @@
 numpy==1.22.0
 spacy==2.1.4
-transformers==4.30.0
+transformers==4.36.0
 Cython==0.29.10
 tqdm==4.32.2
 neuralcoref==4.0
